@@ -1,0 +1,19 @@
+plugins {
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+}
+
+repositories {
+    maven { url 'https://dl.cloudy.me/' }
+    maven { url 'https://maven.ftb.app/maven2' }
+    maven { url 'https://maven.architectury.app/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.1"
+    mappings "net.fabricmc:yarn:1.21.1+build.3:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.15.11"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.1"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-1.21.1:4.5"
+    modImplementation "dev.ftb.quests:ftb-quests-fabric-1.21.1:2.11.0"
+    modImplementation "dev.architectury:architectury-fabric:13.0.0"
+}

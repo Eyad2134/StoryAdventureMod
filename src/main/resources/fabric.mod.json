@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "adventure_mod",
+  "version": "1.0.0",
+  "name": "Story Adventure",
+  "description": "A story-driven adventure with dimensional bosses.",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.21.1",
+    "fabric": "*",
+    "geckolib": ">=4.5",
+    "ftbquests": "*"
+  },
+  "entrypoints": {
+    "main": [ "com.example.adventure.AdventureMod" ]
+  }
+}
