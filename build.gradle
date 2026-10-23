@@ -1,19 +1,66 @@
 plugins {
     id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'java'
+}
+
+version = '1.0.0'
+group = 'com.example'
+
+base {
+    archivesName = 'story-adventure-mod'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
-    maven { url 'https://dl.cloudy.me/' }
-    maven { url 'https://maven.ftb.app/maven2' }
-    maven { url 'https://maven.architectury.app/' }
+    mavenCentral()
+    // GeckoLib
+    maven { url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    // FTB Mods (Quests, Library, Teams)
+    maven {
+        url = "https://maven.ftb.dev/releases"
+        content {
+            includeGroup "dev.ftb.mods"
+        }
+    }
+    // Architectury (required by FTB mods)
+    maven { url = "https://maven.architectury.dev/" }
+    // Cloth Config (transitive for FTB)
+    maven { url = "https://maven.shedaniel.me/" }
 }
 
 dependencies {
+    // Minecraft + Fabric
     minecraft "com.mojang:minecraft:1.21.1"
     mappings "net.fabricmc:yarn:1.21.1+build.3:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.15.11"
+    modImplementation "net.fabricmc:fabric-loader:0.16.9"
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.1"
-    modImplementation "software.bernie.geckolib:geckolib-fabric-1.21.1:4.5"
-    modImplementation "dev.ftb.quests:ftb-quests-fabric-1.21.1:2.11.0"
-    modImplementation "dev.architectury:architectury-fabric:13.0.0"
+
+    // GeckoLib 4 for Fabric 1.21.1
+    modImplementation "software.bernie.geckolib:geckolib-fabric-1.21.1:4.7.1"
+
+    // Architectury API (required by all FTB mods)
+    modImplementation "dev.architectury:architectury-fabric:13.0.8"
+
+    // FTB Library (core dep of FTB Quests)
+    modImplementation "dev.ftb.mods:ftb-library-fabric:2101.1.5"
+
+    // FTB Teams (required by FTB Quests)
+    modImplementation "dev.ftb.mods:ftb-teams-fabric:2101.1.2"
+
+    // Item Filters (required by FTB Quests for reward filtering)
+    modImplementation "dev.ftb.mods:item-filters-fabric:2101.1.3"
+
+    // FTB Quests
+    modImplementation "dev.ftb.mods:ftb-quests-fabric:2101.1.7"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
 }
