@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.adventure.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ScreenShakeMixin"
+  ],
+  "client": [
+    "ClientScreenShakeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
